@@ -8,17 +8,16 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
- 
- class Solution {
+class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
-        ListNode *dummy = new ListNode(-1);
-        while (head)
-        {
-            ListNode *next = head->next;
-            ListNode *p = dummy;
-            while (p->next && p->next-> val <= head->val) p = p->next;
-
+        auto dummy = new ListNode(-1);
+        while(head){
+            ListNode* next = head->next;
+            ListNode* p = dummy;
+            // 找head节点待插入位置
+            while(p->next && p->next->val <= head->val) p = p->next;
+            
             head->next = p->next;
             p->next = head;
 
