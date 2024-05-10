@@ -11,17 +11,17 @@
 class Solution {
 public:
     ListNode* insertionSortList(ListNode* head) {
-        auto dummy = new ListNode(-1);
-        while(head){
-            ListNode* next = head->next;
+        auto dummy = new ListNode();
+        auto cur = head;
+        while(cur){
+            ListNode* next = cur->next;
             ListNode* p = dummy;
-            // 找head节点待插入位置
-            while(p->next && p->next->val <= head->val) p = p->next;
-            
-            head->next = p->next;
-            p->next = head;
+            while(p->next && p->next->val <= cur->val) p=p->next;
 
-            head = next;
+            cur->next=p->next;
+            p->next=cur;
+
+            cur=next;
         }
         return dummy->next;
     }
